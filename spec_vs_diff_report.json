@@ -1,0 +1,52 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-16T14:36:32.229Z",
+  "summary": "Diff adds a new AR rendering/effects stack (makeup, ornaments with secondary motion, glow, sparkles, background blur), variant effect modules (bridal/anime/festival), capture-to-PNG utility, settings state with defaults, and a Lens Notes UI component. A camera error panel is included. However, due to truncated/omitted files, it’s unclear whether the main AR page provides the full required UI (camera start/stop, variant switching UI, capture button, background blur toggle/intensity controls) and wiring of these pieces.",
+  "missing_requirements": [],
+  "hallucinated_features": [
+    {
+      "description": "Added an Internet Computer backend canister stub with an empty actor.",
+      "reason": "BuildRequest specifies no external backend services and does not request adding an IC backend at this stage; adding a backend file is extra to the requested frontend AR experience.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.52,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/features/ar/capture/captureComposite.ts",
+    "frontend/src/features/ar/components/CameraErrorPanel.tsx",
+    "frontend/src/features/ar/components/EffectControlsPanel.tsx",
+    "frontend/src/features/ar/components/LensNotes.tsx",
+    "frontend/src/features/ar/effects/background/BackgroundBlur.ts",
+    "frontend/src/features/ar/effects/glow/FaceGlow.ts",
+    "frontend/src/features/ar/effects/makeup/NaturalBeautyMakeup.ts",
+    "frontend/src/features/ar/effects/ornaments/TraditionalOrnaments.ts",
+    "frontend/src/features/ar/effects/ornaments/secondaryMotion.ts",
+    "frontend/src/features/ar/effects/particles/PastelSparkles.ts",
+    "frontend/src/features/ar/hooks/useFaceLandmarks.ts",
+    "frontend/src/features/ar/hooks/usePersonSegmentation.ts",
+    "frontend/src/features/ar/render/ArRenderer.ts",
+    "frontend/src/features/ar/state/defaultSettings.ts",
+    "frontend/src/features/ar/state/useArSettings.ts",
+    "frontend/src/features/ar/variants/animeSparkle.ts",
+    "frontend/src/features/ar/variants/bridal.ts",
+    "frontend/src/features/ar/variants/festival.ts",
+    "frontend/src/features/ar/variants/types.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/ArFaceFilterPage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

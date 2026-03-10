@@ -1,0 +1,220 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-webcam-based-ar-face-filter-experience-in-the-react-app-that-runs-in-browser-and-overlays-effects-on-the-user-s-face-in-real-time",
+      "featureTitle": "Create a webcam-based AR face filter experience in the React app that runs in-browser and overlays effects on the user’s face in real time.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/features/ar/components/CameraErrorPanel.tsx",
+        "frontend/src/features/ar/hooks/useFaceLandmarks.ts",
+        "frontend/src/features/ar/render/ArRenderer.ts",
+        "frontend/src/pages/ArFaceFilterPage.tsx"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-natural-beauty-makeup-look-slight-skin-smoothing-that-preserves-natural-texture-soft-pink-blush-light-glossy-lips-and-subtle-eye-sparkle-keep-the-result-realistic-and-not-heavy-makeup",
+      "featureTitle": "Implement the “Natural Beauty” makeup look: slight skin smoothing that preserves natural texture, soft pink blush, light glossy lips, and subtle eye sparkle; keep the result realistic and not heavy makeup.",
+      "files": [
+        "frontend/src/features/ar/effects/makeup/NaturalBeautyMakeup.ts",
+        "frontend/src/features/ar/render/ArRenderer.ts"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-elegant-traditional-ornaments-a-small-maang-tikka-tiny-nose-ring-delicate-jhumka-earrings-and-a-thin-gold-necklace-ornaments-must-be-face-head-tracked-and-gently-move-with-head-motion-slight-lag-sway",
+      "featureTitle": "Add elegant traditional ornaments: a small maang tikka, tiny nose ring, delicate jhumka earrings, and a thin gold necklace; ornaments must be face/head tracked and gently move with head motion (slight lag/sway).",
+      "files": [
+        "frontend/src/features/ar/effects/ornaments/TraditionalOrnaments.ts",
+        "frontend/src/features/ar/effects/ornaments/secondaryMotion.ts",
+        "frontend/src/features/ar/render/ArRenderer.ts"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-soft-glowing-light-around-the-face-plus-pastel-sparkles-keeping-the-effect-classy-cute-realistic-no-harsh-neon-or-heavy-glitter",
+      "featureTitle": "Add a soft glowing light around the face plus pastel sparkles, keeping the effect classy/cute/realistic (no harsh neon or heavy glitter).",
+      "files": [
+        "frontend/src/features/ar/effects/glow/FaceGlow.ts",
+        "frontend/src/features/ar/effects/particles/PastelSparkles.ts",
+        "frontend/src/features/ar/render/ArRenderer.ts"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-soft-background-blur-behind-the-subject-while-keeping-the-face-region-sharp",
+      "featureTitle": "Apply a soft background blur behind the subject while keeping the face region sharp.",
+      "files": [
+        "frontend/src/features/ar/effects/background/BackgroundBlur.ts",
+        "frontend/src/features/ar/hooks/usePersonSegmentation.ts",
+        "frontend/src/features/ar/render/ArRenderer.ts",
+        "frontend/src/pages/ArFaceFilterPage.tsx"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-provide-optional-style-variants-selectable-in-the-ui-1-south-indian-bridal-vibe-jasmine-flowers-in-hair-temple-jewellery-style-ornaments-2-cute-anime-sparkle-vibe-tiny-hearts-stars-glitter-tears-under-eyes-3-festival-look-small-bindi-diya-glow-lighting-golden-shimmer-particles",
+      "featureTitle": "Provide optional style variants selectable in the UI: (1) South Indian Bridal vibe (jasmine flowers in hair + temple jewellery style ornaments), (2) Cute anime sparkle vibe (tiny hearts/stars + glitter tears under eyes), (3) Festival look (small bindi + diya glow lighting + golden shimmer particles).",
+      "files": [
+        "frontend/src/features/ar/render/ArRenderer.ts",
+        "frontend/src/features/ar/variants/animeSparkle.ts",
+        "frontend/src/features/ar/variants/bridal.ts",
+        "frontend/src/features/ar/variants/festival.ts",
+        "frontend/src/features/ar/variants/types.ts",
+        "frontend/src/pages/ArFaceFilterPage.tsx"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-user-controls-for-effect-intensity-at-minimum-skin-smoothing-blush-lip-gloss-eye-sparkle-glow-sparkles-background-blur-and-a-reset-to-default-action",
+      "featureTitle": "Add user controls for effect intensity (at minimum: skin smoothing, blush, lip gloss, eye sparkle, glow/sparkles, background blur) and a “Reset to default” action.",
+      "files": [
+        "frontend/src/features/ar/components/EffectControlsPanel.tsx",
+        "frontend/src/features/ar/render/ArRenderer.ts",
+        "frontend/src/features/ar/state/defaultSettings.ts",
+        "frontend/src/features/ar/state/useArSettings.ts",
+        "frontend/src/pages/ArFaceFilterPage.tsx"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-capture-feature-to-export-a-still-image-from-the-live-preview-download-locally-with-the-effects-applied",
+      "featureTitle": "Add a “Capture” feature to export a still image from the live preview (download locally) with the effects applied.",
+      "files": [
+        "frontend/src/features/ar/capture/captureComposite.ts",
+        "frontend/src/pages/ArFaceFilterPage.tsx"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-cohesive-creative-ui-visual-theme-for-the-app-colors-typography-spacing-component-styling-that-matches-a-soft-natural-glam-warm-gold-aesthetic-avoid-blue-purple-as-primary-brand-colors",
+      "featureTitle": "Apply a cohesive, creative UI visual theme for the app (colors, typography, spacing, component styling) that matches a “soft natural glam + warm gold” aesthetic; avoid blue/purple as primary brand colors.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/src/pages/ArFaceFilterPage.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-include-a-lightweight-in-app-lens-notes-section-that-summarizes-in-english-the-currently-selected-look-and-the-active-add-ons-ornaments-sparkles-blur-without-referencing-snapchat-lens-studio-tooling-steps",
+      "featureTitle": "Include a lightweight in-app “Lens Notes” section that summarizes, in English, the currently selected look and the active add-ons (ornaments, sparkles, blur), without referencing Snapchat/Lens Studio tooling steps.",
+      "files": [
+        "frontend/src/features/ar/components/LensNotes.tsx",
+        "frontend/src/pages/ArFaceFilterPage.tsx"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

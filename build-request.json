@@ -1,0 +1,224 @@
+{
+  "kind": "build_request",
+  "title": "Web-based natural beauty AR face filter with traditional ornaments and style variants",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a webcam-based AR face filter experience in the React app that runs in-browser and overlays effects on the user’s face in real time.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Create a natural beauty Snapchat filter with minimal makeup."
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can start/stop the camera and grant permissions from the UI",
+        "When the camera is active, the app renders a live preview with face-aligned overlays at interactive frame rates",
+        "If camera permission is denied/unavailable, the UI shows a clear error state and recovery instructions"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement the “Natural Beauty” makeup look: slight skin smoothing that preserves natural texture, soft pink blush, light glossy lips, and subtle eye sparkle; keep the result realistic and not heavy makeup.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Smooth skin slightly while keeping natural texture. Add soft pink blush, light glossy lips, and subtle eye sparkle. Keep the look classy, cute, and realistic, not heavy makeup."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Makeup overlays remain aligned to the face during head movement",
+        "Skin smoothing is subtle (no plastic/over-blur look) and retains visible texture",
+        "Blush, lips gloss, and eye sparkle are visibly present but remain minimal and natural-looking"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add elegant traditional ornaments: a small maang tikka, tiny nose ring, delicate jhumka earrings, and a thin gold necklace; ornaments must be face/head tracked and gently move with head motion (slight lag/sway).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Include elegant traditional ornaments like a small maang tikka, tiny nose ring, delicate jhumka earrings, and a thin gold necklace.",
+          "Make ornaments gently move with head tracking"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each ornament is rendered and anchored to the correct facial region (forehead parting, nostril, ears, neck/collar region)",
+        "Ornaments remain stable without excessive jitter during normal motion",
+        "Ornaments exhibit a gentle secondary motion (subtle sway/lag) while remaining attached to the tracked pose"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add a soft glowing light around the face plus pastel sparkles, keeping the effect classy/cute/realistic (no harsh neon or heavy glitter).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Add soft glowing light around the face with pastel sparkles. Keep the look classy, cute, and realistic"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A soft face-centered glow is visible and follows the user’s face position",
+        "Pastel sparkles appear around the face area and animate subtly (twinkle/drift)",
+        "Sparkles/glow do not obscure facial features or overpower the makeup/ornaments"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Apply a soft background blur behind the subject while keeping the face region sharp.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "add a soft blur background."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Background is visibly blurred while the subject/face remains comparatively sharp",
+        "Blur transitions look smooth around hair/edges (no harsh cutout)",
+        "Provide a UI toggle to enable/disable background blur for performance compatibility"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Provide optional style variants selectable in the UI: (1) South Indian Bridal vibe (jasmine flowers in hair + temple jewellery style ornaments), (2) Cute anime sparkle vibe (tiny hearts/stars + glitter tears under eyes), (3) Festival look (small bindi + diya glow lighting + golden shimmer particles).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Optional style variants: South Indian bridal (jasmine flowers + temple jewelry), anime sparkle (tiny hearts/stars + glitter tears), festival (small bindi + diya glow + golden shimmer particles)."
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can switch between at least: Natural Beauty (base), South Indian Bridal, Cute Anime Sparkle, and Festival",
+        "Each variant visibly adds the described elements without removing the base natural makeup unless explicitly toggled off",
+        "Variant switching updates the effect live without requiring a page reload"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Add user controls for effect intensity (at minimum: skin smoothing, blush, lip gloss, eye sparkle, glow/sparkles, background blur) and a “Reset to default” action.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Smooth skin slightly while keeping natural texture. Add soft pink blush, light glossy lips, and subtle eye sparkle. Add soft glowing light around the face with pastel sparkles. Add soft blur background."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each listed effect has an adjustable control that updates the preview immediately",
+        "Reset restores the default “classy, cute, realistic, minimal makeup” settings",
+        "Controls are labeled in English and are understandable without documentation"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add a “Capture” feature to export a still image from the live preview (download locally) with the effects applied.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Create a natural beauty Snapchat filter with minimal makeup."
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can capture and download an image (PNG or JPEG) of the current frame including overlays",
+        "Downloaded file has a reasonable default name and includes the visible variant/effects",
+        "Capture works without any backend upload requirement"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Apply a cohesive, creative UI visual theme for the app (colors, typography, spacing, component styling) that matches a “soft natural glam + warm gold” aesthetic; avoid blue/purple as primary brand colors.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The UI has a consistent palette and typography across all screens/components",
+        "Primary styling emphasizes warm neutrals (e.g., ivory/peach) and gold accents",
+        "No major UI areas use blue/purple as the primary brand color"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Include a lightweight in-app “Lens Notes” section that summarizes, in English, the currently selected look and the active add-ons (ornaments, sparkles, blur), without referencing Snapchat/Lens Studio tooling steps.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Use English for any user-facing text in the build request."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Notes update when switching variants or toggling major effects",
+        "All user-facing text is in English",
+        "Notes are descriptive but brief (no implementation instructions)"
+      ]
+    }
+  ],
+  "constraints": [
+    "All user-facing text must be in English.",
+    "Do not edit files under frontend/src/components/ui or any other frontend immutablePaths; compose those components instead if needed.",
+    "Keep the visual result realistic and minimal (no heavy makeup).",
+    "No external backend services or databases; any persistence must use the provided Internet Computer backend only if added later."
+  ],
+  "nonGoals": [
+    "Generating an actual Snapchat Lens Studio project file or publishing to Snapchat.",
+    "Third-party authentication providers (use Internet Identity only if authentication is later introduced).",
+    "Real-time multiplayer or chat features.",
+    "Uploading captured images to an external server/service."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Small gold maang tikka ornament, realistic metal with subtle shine and tiny gem (maang-tikka.dim_512x512.png)",
+      "Tiny delicate gold nose ring, realistic metal with subtle shine (nose-ring.dim_512x512.png)",
+      "Pair of delicate gold jhumka earrings, realistic metalwork with subtle shine (jhumka-earrings.dim_512x512.png)",
+      "Thin gold necklace with minimal pendant details, realistic metal shine (gold-necklace.dim_1024x512.png)",
+      "Soft pastel sparkle particle spritesheet, subtle twinkle shapes (pastel-sparkles-sprites.dim_1024x1024.png)",
+      "Cluster of jasmine flowers (white blossoms with slight green stems), realistic (jasmine-flowers.dim_1024x1024.png)",
+      "Temple jewellery style ornament overlay elements, gold realistic (temple-jewelry-pack.dim_1024x1024.png)",
+      "Tiny hearts and stars sparkle spritesheet, pastel/anime style but still soft (anime-hearts-stars-sprites.dim_1024x1024.png)",
+      "Glitter tear streak overlays (left and right), semi-transparent (glitter-tears-pack.dim_1024x1024.png)",
+      "Small bindi dot (deep red/maroon) with subtle texture (bindi.dim_256x256.png)",
+      "Soft diya glow particle sprite (warm amber) (diya-glow.dim_512x512.png)",
+      "Golden shimmer particle spritesheet (fine glitter, subtle) (golden-shimmer-sprites.dim_1024x1024.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

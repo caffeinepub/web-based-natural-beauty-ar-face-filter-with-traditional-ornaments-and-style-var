@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build a natural beauty Snapchat Lens (filter) with minimal makeup, subtle skin smoothing, traditional ornaments with head tracking, soft face glow + pastel sparkles, and a blurred background; include optional style variants (South Indian bridal, anime sparkle, festival).",
+  "architectural_notes": [
+    "Implement in Snapchat Lens Studio using Face Mesh and Head Tracking for ornament placement/animation.",
+    "Prioritize realistic skin texture and soft lighting; avoid heavy makeup look."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Small gold maang tikka ornament, realistic metal with subtle shine and tiny gem (maang-tikka.dim_512x512.png)\n- Tiny delicate gold nose ring, realistic metal with subtle shine (nose-ring.dim_512x512.png)\n- Pair of delicate gold jhumka earrings, realistic metalwork with subtle shine (jhumka-earrings.dim_512x512.png)\n- Thin gold necklace with minimal pendant details, realistic metal shine (gold-necklace.dim_1024x512.png)\n- Soft pastel sparkle particle spritesheet, subtle twinkle shapes (pastel-sparkles-sprites.dim_1024x1024.png)\n- Cluster of jasmine flowers (white blossoms with slight green stems), realistic (jasmine-flowers.dim_1024x1024.png)\n- Temple jewellery style ornament overlay elements, gold realistic (temple-jewelry-pack.dim_1024x1024.png)\n- Tiny hearts and stars sparkle spritesheet, pastel/anime style but still soft (anime-hearts-stars-sprites.dim_1024x1024.png)\n- Glitter tear streak overlays (left and right), semi-transparent (glitter-tears-pack.dim_1024x1024.png)\n- Small bindi dot (deep red/maroon) with subtle texture (bindi.dim_256x256.png)\n- Soft diya glow particle sprite (warm amber) (diya-glow.dim_512x512.png)\n- Golden shimmer particle spritesheet (fine glitter, subtle) (golden-shimmer-sprites.dim_1024x1024.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-webcam-based-ar-face-filter-experience-in-the-react-app-that-runs-in-browser-and-overlays-effects-on-the-user-s-face-in-real-time",
+      "title": "Create a webcam-based AR face filter experience in the React app that runs in-browser and overlays effects on the user’s face in real time.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-natural-beauty-makeup-look-slight-skin-smoothing-that-preserves-natural-texture-soft-pink-blush-light-glossy-lips-and-subtle-eye-sparkle-keep-the-result-realistic-and-not-heavy-makeup",
+      "title": "Implement the “Natural Beauty” makeup look: slight skin smoothing that preserves natural texture, soft pink blush, light glossy lips, and subtle eye sparkle; keep the result realistic and not heavy makeup.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-elegant-traditional-ornaments-a-small-maang-tikka-tiny-nose-ring-delicate-jhumka-earrings-and-a-thin-gold-necklace-ornaments-must-be-face-head-tracked-and-gently-move-with-head-motion-slight-lag-sway",
+      "title": "Add elegant traditional ornaments: a small maang tikka, tiny nose ring, delicate jhumka earrings, and a thin gold necklace; ornaments must be face/head tracked and gently move with head motion (slight lag/sway).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-soft-glowing-light-around-the-face-plus-pastel-sparkles-keeping-the-effect-classy-cute-realistic-no-harsh-neon-or-heavy-glitter",
+      "title": "Add a soft glowing light around the face plus pastel sparkles, keeping the effect classy/cute/realistic (no harsh neon or heavy glitter).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-soft-background-blur-behind-the-subject-while-keeping-the-face-region-sharp",
+      "title": "Apply a soft background blur behind the subject while keeping the face region sharp.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-optional-style-variants-selectable-in-the-ui-1-south-indian-bridal-vibe-jasmine-flowers-in-hair-temple-jewellery-style-ornaments-2-cute-anime-sparkle-vibe-tiny-hearts-stars-glitter-tears-under-eyes-3-festival-look-small-bindi-diya-glow-lighting-golden-shimmer-particles",
+      "title": "Provide optional style variants selectable in the UI: (1) South Indian Bridal vibe (jasmine flowers in hair + temple jewellery style ornaments), (2) Cute anime sparkle vibe (tiny hearts/stars + glitter tears under eyes), (3) Festival look (small bindi + diya glow lighting + golden shimmer particles).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-user-controls-for-effect-intensity-at-minimum-skin-smoothing-blush-lip-gloss-eye-sparkle-glow-sparkles-background-blur-and-a-reset-to-default-action",
+      "title": "Add user controls for effect intensity (at minimum: skin smoothing, blush, lip gloss, eye sparkle, glow/sparkles, background blur) and a “Reset to default” action.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-capture-feature-to-export-a-still-image-from-the-live-preview-download-locally-with-the-effects-applied",
+      "title": "Add a “Capture” feature to export a still image from the live preview (download locally) with the effects applied.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-cohesive-creative-ui-visual-theme-for-the-app-colors-typography-spacing-component-styling-that-matches-a-soft-natural-glam-warm-gold-aesthetic-avoid-blue-purple-as-primary-brand-colors",
+      "title": "Apply a cohesive, creative UI visual theme for the app (colors, typography, spacing, component styling) that matches a “soft natural glam + warm gold” aesthetic; avoid blue/purple as primary brand colors.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-include-a-lightweight-in-app-lens-notes-section-that-summarizes-in-english-the-currently-selected-look-and-the-active-add-ons-ornaments-sparkles-blur-without-referencing-snapchat-lens-studio-tooling-steps",
+      "title": "Include a lightweight in-app “Lens Notes” section that summarizes, in English, the currently selected look and the active add-ons (ornaments, sparkles, blur), without referencing Snapchat/Lens Studio tooling steps.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Natural beauty makeup effects: slight skin smoothing that preserves texture, soft pink blush, light glossy lips, subtle eye sparkle (realistic, minimal makeup).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add traditional ornaments: small maang tikka, tiny nose ring, delicate jhumka earrings, thin gold necklace.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Animate ornaments with head tracking / face mesh so they gently move with the user’s head.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add soft glowing light around the face with pastel sparkles (classy/cute/realistic).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Add soft background blur effect behind the subject.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Optional style variants: South Indian bridal (jasmine flowers + temple jewelry), anime sparkle (tiny hearts/stars + glitter tears), festival (small bindi + diya glow + golden shimmer particles).",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Web-based natural beauty AR face filter with traditional ornaments and style variants",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

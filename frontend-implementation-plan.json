@@ -1,0 +1,372 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "In-browser AR Face Filter (Natural Beauty + Traditional Ornaments + Variants)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement an in-browser webcam AR experience with real-time face-aligned overlays and robust camera states.",
+      "acceptanceCriteria": [
+        "User can start/stop the camera and grant permissions from the UI",
+        "When the camera is active, the app renders a live preview with face-aligned overlays at interactive frame rates",
+        "If camera permission is denied/unavailable, the UI shows a clear error state and recovery instructions"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/package.json",
+          "operation": "modify",
+          "description": "Add/adjust frontend dependencies needed for in-browser face tracking and rendering (e.g., MediaPipe face landmarks) to support real-time overlays."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire a single AR experience view into the app and ensure navigation renders it (avoid introducing extra routes unless already present)."
+        },
+        {
+          "path": "frontend/src/pages/ArFaceFilterPage.tsx",
+          "operation": "create",
+          "description": "Create the main AR page that hosts the camera preview, start/stop controls, error states, and an overlay canvas. Use the selected camera component hook `useCamera` to manage permissions, start/stop, and preview; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/ar/hooks/useFaceLandmarks.ts",
+          "operation": "create",
+          "description": "Add a hook that initializes and runs face landmark tracking on the live video stream and exposes stable landmark/pose data for overlay alignment."
+        },
+        {
+          "path": "frontend/src/features/ar/render/ArRenderer.ts",
+          "operation": "create",
+          "description": "Implement a renderer that composites the camera frame plus AR overlays onto a canvas at interactive frame rates, handling resize/aspect ratio and performance throttling."
+        },
+        {
+          "path": "frontend/src/features/ar/components/CameraErrorPanel.tsx",
+          "operation": "create",
+          "description": "Add a small UI component that renders clear English error messages for unsupported devices, permission denied, or missing camera, including recovery instructions. Use shadcn/ui primitives for consistent styling; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add the Natural Beauty makeup overlays (subtle smoothing, blush, gloss, eye sparkle) that remain realistic and tracked.",
+      "acceptanceCriteria": [
+        "Makeup overlays remain aligned to the face during head movement",
+        "Skin smoothing is subtle (no plastic/over-blur look) and retains visible texture",
+        "Blush, lips gloss, and eye sparkle are visibly present but remain minimal and natural-looking"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/ar/effects/makeup/NaturalBeautyMakeup.ts",
+          "operation": "create",
+          "description": "Implement the base makeup effect module that converts face landmarks into overlay geometry and draws: (1) subtle smoothing, (2) blush, (3) lip gloss, (4) eye sparkle with minimal, realistic parameters."
+        },
+        {
+          "path": "frontend/src/features/ar/effects/makeup/skinSmoothing.ts",
+          "operation": "create",
+          "description": "Add a subtle, texture-preserving smoothing pass (lightweight, configurable intensity) applied only to the face region to avoid an over-blurred look."
+        },
+        {
+          "path": "frontend/src/features/ar/effects/makeup/colorOverlays.ts",
+          "operation": "create",
+          "description": "Add blend utilities for blush and lip gloss that support soft edges and low-opacity layering for a natural result."
+        },
+        {
+          "path": "frontend/src/features/ar/render/ArRenderer.ts",
+          "operation": "modify",
+          "description": "Integrate the Natural Beauty makeup effect into the render pipeline so it stays aligned with landmark updates and respects intensity controls."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Render traditional ornaments (maang tikka, nose ring, jhumkas, necklace) anchored to tracked regions with gentle sway.",
+      "acceptanceCriteria": [
+        "Each ornament is rendered and anchored to the correct facial region (forehead parting, nostril, ears, neck/collar region)",
+        "Ornaments remain stable without excessive jitter during normal motion",
+        "Ornaments exhibit a gentle secondary motion (subtle sway/lag) while remaining attached to the tracked pose"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/maang-tikka.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated ornament asset at the required path so the frontend can load it as a static overlay sprite."
+        },
+        {
+          "path": "frontend/public/assets/generated/nose-ring.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated ornament asset at the required path so the frontend can load it as a static overlay sprite."
+        },
+        {
+          "path": "frontend/public/assets/generated/jhumka-earrings.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated ornament asset at the required path so the frontend can load it as a static overlay sprite."
+        },
+        {
+          "path": "frontend/public/assets/generated/gold-necklace.dim_1024x512.png",
+          "operation": "create",
+          "description": "Add the generated ornament asset at the required path so the frontend can load it as a static overlay sprite."
+        },
+        {
+          "path": "frontend/src/features/ar/effects/ornaments/TraditionalOrnaments.ts",
+          "operation": "create",
+          "description": "Implement ornament sprites anchored to forehead parting (maang tikka), nostril (nose ring), ears (jhumkas), and neck/collar region (necklace) using face landmarks; apply smoothing/jitter reduction and a gentle secondary motion (lag/sway)."
+        },
+        {
+          "path": "frontend/src/features/ar/effects/ornaments/secondaryMotion.ts",
+          "operation": "create",
+          "description": "Add a reusable secondary-motion filter (spring/lerp-based) that introduces subtle sway while preserving attachment to tracked pose."
+        },
+        {
+          "path": "frontend/src/features/ar/render/ArRenderer.ts",
+          "operation": "modify",
+          "description": "Integrate the traditional ornament effect into the composite draw order so ornaments sit naturally relative to makeup (and remain stable with smoothing + sway)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add a face-following soft glow and subtle pastel sparkles that do not overpower the look.",
+      "acceptanceCriteria": [
+        "A soft face-centered glow is visible and follows the user’s face position",
+        "Pastel sparkles appear around the face area and animate subtly (twinkle/drift)",
+        "Sparkles/glow do not obscure facial features or overpower the makeup/ornaments"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/pastel-sparkles-sprites.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated pastel sparkle spritesheet asset at the required path for subtle particle rendering."
+        },
+        {
+          "path": "frontend/src/features/ar/effects/glow/FaceGlow.ts",
+          "operation": "create",
+          "description": "Implement a soft, face-centered glow that follows the face bounds/center from landmarks and blends gently without obscuring features."
+        },
+        {
+          "path": "frontend/src/features/ar/effects/particles/PastelSparkles.ts",
+          "operation": "create",
+          "description": "Implement subtle particle sparkles (twinkle/drift) around the face region using the spritesheet and conservative density/opacity defaults."
+        },
+        {
+          "path": "frontend/src/features/ar/render/ArRenderer.ts",
+          "operation": "modify",
+          "description": "Add glow + sparkles into the renderer with a controlled draw order and intensity scaling so they remain classy and non-distracting."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add a background blur option behind the subject while keeping the face/subject sharp, with a performance toggle.",
+      "acceptanceCriteria": [
+        "Background is visibly blurred while the subject/face remains comparatively sharp",
+        "Blur transitions look smooth around hair/edges (no harsh cutout)",
+        "Provide a UI toggle to enable/disable background blur for performance compatibility"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/package.json",
+          "operation": "modify",
+          "description": "Add/adjust frontend dependencies needed for in-browser person segmentation to support background blur behind the subject."
+        },
+        {
+          "path": "frontend/src/features/ar/hooks/usePersonSegmentation.ts",
+          "operation": "create",
+          "description": "Create a hook that runs lightweight in-browser person/foreground segmentation and outputs a soft mask suitable for smooth blur transitions."
+        },
+        {
+          "path": "frontend/src/features/ar/effects/background/BackgroundBlur.ts",
+          "operation": "create",
+          "description": "Implement background blur compositing using the segmentation mask (soft edges/feathering) while keeping the subject comparatively sharp."
+        },
+        {
+          "path": "frontend/src/pages/ArFaceFilterPage.tsx",
+          "operation": "modify",
+          "description": "Add a toggle control for background blur and wire it to enable/disable the segmentation + blur pipeline in real time. Use shadcn/ui controls for the toggle; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/ar/render/ArRenderer.ts",
+          "operation": "modify",
+          "description": "Integrate optional background blur as an early render stage so later makeup/ornaments/glow remain crisp atop the composited result."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Provide live-switchable style variants (Bridal, Anime Sparkle, Festival) that add elements on top of the base Natural Beauty look.",
+      "acceptanceCriteria": [
+        "User can switch between at least: Natural Beauty (base), South Indian Bridal, Cute Anime Sparkle, and Festival",
+        "Each variant visibly adds the described elements without removing the base natural makeup unless explicitly toggled off",
+        "Variant switching updates the effect live without requiring a page reload"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/jasmine-flowers.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated jasmine flowers asset at the required path for the Bridal variant."
+        },
+        {
+          "path": "frontend/public/assets/generated/temple-jewelry-pack.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated temple jewellery pack asset at the required path for the Bridal variant."
+        },
+        {
+          "path": "frontend/public/assets/generated/anime-hearts-stars-sprites.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated hearts/stars spritesheet asset at the required path for the Anime variant."
+        },
+        {
+          "path": "frontend/public/assets/generated/glitter-tears-pack.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated glitter tears overlays asset at the required path for the Anime variant."
+        },
+        {
+          "path": "frontend/public/assets/generated/bindi.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated bindi asset at the required path for the Festival variant."
+        },
+        {
+          "path": "frontend/public/assets/generated/diya-glow.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated diya glow sprite asset at the required path for the Festival variant."
+        },
+        {
+          "path": "frontend/public/assets/generated/golden-shimmer-sprites.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated golden shimmer spritesheet asset at the required path for the Festival variant."
+        },
+        {
+          "path": "frontend/src/features/ar/variants/types.ts",
+          "operation": "create",
+          "description": "Define variant identifiers and a small configuration model to describe which add-on effects are enabled per variant (base + add-ons)."
+        },
+        {
+          "path": "frontend/src/features/ar/variants/bridal.ts",
+          "operation": "create",
+          "description": "Implement South Indian Bridal add-ons: jasmine hair flowers + temple jewellery style overlays anchored to head/forehead regions, layered over the base look."
+        },
+        {
+          "path": "frontend/src/features/ar/variants/animeSparkle.ts",
+          "operation": "create",
+          "description": "Implement Cute Anime Sparkle add-ons: tiny hearts/stars particles plus glitter tear overlays under the eyes, kept soft and not neon."
+        },
+        {
+          "path": "frontend/src/features/ar/variants/festival.ts",
+          "operation": "create",
+          "description": "Implement Festival add-ons: small bindi + diya-inspired warm glow lighting + golden shimmer particles with conservative intensity."
+        },
+        {
+          "path": "frontend/src/pages/ArFaceFilterPage.tsx",
+          "operation": "modify",
+          "description": "Add a variant selector UI and wire it to swap variant configuration live without reload. Use shadcn/ui selection components (e.g., Tabs/Select); verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/ar/render/ArRenderer.ts",
+          "operation": "modify",
+          "description": "Update the renderer to apply: base Natural Beauty + Traditional Ornaments + per-variant add-ons, with live switching and stable draw order."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Add labeled intensity controls for key effects plus a Reset to default action, all updating the preview immediately.",
+      "acceptanceCriteria": [
+        "Each listed effect has an adjustable control that updates the preview immediately",
+        "Reset restores the default “classy, cute, realistic, minimal makeup” settings",
+        "Controls are labeled in English and are understandable without documentation"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/ar/state/defaultSettings.ts",
+          "operation": "create",
+          "description": "Define default intensity settings that match the minimal, realistic Natural Beauty baseline and serve as the reset target."
+        },
+        {
+          "path": "frontend/src/features/ar/state/useArSettings.ts",
+          "operation": "create",
+          "description": "Create a settings hook to manage intensities (skin smoothing, blush, lip gloss, eye sparkle, glow/sparkles, background blur) and expose update + reset actions."
+        },
+        {
+          "path": "frontend/src/features/ar/components/EffectControlsPanel.tsx",
+          "operation": "create",
+          "description": "Implement a control panel with labeled sliders/toggles and a Reset button. Use shadcn/ui components (e.g., Slider, Button, Switch, Card) to maintain consistent styling; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/ArFaceFilterPage.tsx",
+          "operation": "modify",
+          "description": "Wire the EffectControlsPanel into the AR page and connect settings to the renderer so adjustments update the preview immediately."
+        },
+        {
+          "path": "frontend/src/features/ar/render/ArRenderer.ts",
+          "operation": "modify",
+          "description": "Read intensity settings during each render pass and scale makeup/ornaments/glow/sparkles/blur accordingly."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Add a Capture action that downloads a still image of the current AR composite locally with a sensible filename.",
+      "acceptanceCriteria": [
+        "User can capture and download an image (PNG or JPEG) of the current frame including overlays",
+        "Downloaded file has a reasonable default name and includes the visible variant/effects",
+        "Capture works without any backend upload requirement"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/ar/capture/captureComposite.ts",
+          "operation": "create",
+          "description": "Implement a capture utility that exports the current composed preview (camera + effects) from the render canvas to a downloadable PNG/JPEG with a variant-aware default filename."
+        },
+        {
+          "path": "frontend/src/pages/ArFaceFilterPage.tsx",
+          "operation": "modify",
+          "description": "Add a prominent Capture button near the preview and wire it to download the current composite. Also continue to use the selected `useCamera` hook for camera preview and readiness states; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Apply a cohesive soft natural glam + warm gold UI theme across the app, avoiding blue/purple as primary colors.",
+      "acceptanceCriteria": [
+        "The UI has a consistent palette and typography across all screens/components",
+        "Primary styling emphasizes warm neutrals (e.g., ivory/peach) and gold accents",
+        "No major UI areas use blue/purple as the primary brand color"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Create global styles and CSS variables for a warm neutral + gold-accent theme (ivory/peach backgrounds, warm text, gold highlights) and apply consistent typography/spacing defaults. Ensure user-facing text remains English."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme tokens (via CSS variables already referenced) and any needed extensions to support the warm gold aesthetic while avoiding blue/purple as primary brand colors."
+        },
+        {
+          "path": "frontend/src/pages/ArFaceFilterPage.tsx",
+          "operation": "modify",
+          "description": "Apply the themed layout styling to the AR page (cards/panels, spacing, responsive preview sizing) using composed shadcn/ui components (do not edit immutable ui component files)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Add a lightweight Lens Notes section that summarizes the selected look and active add-ons in English and updates live.",
+      "acceptanceCriteria": [
+        "Notes update when switching variants or toggling major effects",
+        "All user-facing text is in English",
+        "Notes are descriptive but brief (no implementation instructions)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/ar/components/LensNotes.tsx",
+          "operation": "create",
+          "description": "Create a compact notes panel that summarizes the current variant and active add-ons (ornaments, sparkles/glow, background blur) in brief English sentences. Use shadcn/ui Card/Text styling by composition; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/ArFaceFilterPage.tsx",
+          "operation": "modify",
+          "description": "Wire LensNotes into the AR page and connect it to the current variant and settings state so it updates immediately when the user changes options."
+        }
+      ]
+    }
+  ]
+}
